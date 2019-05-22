@@ -6,7 +6,7 @@ class HouseSearchFacade
   end
 
   def students
-    students = house_data[:students]
+    students = house_data
     students.map do |student_data|
       Student.new(student_data)
     end
@@ -16,12 +16,11 @@ class HouseSearchFacade
 
   def house_data
     data = get_json
-    data.first[:attributes]
   end
 
   def get_json
     response = conn.get
-    data = JSON.parse(response.body, symbolize_names: true)[:data]
+    data = JSON.parse(response.body, symbolize_names: true)
   end
 
   def conn
