@@ -15,17 +15,21 @@ class HouseSearchFacade
   private
 
   def house_data
-    response = conn.get
-    data = JSON.parse(response.body, symbolize_names: true)[:data]
+    data = get_json
     data.first[:attributes]
   end
 
-  def conn
-    Faraday.new("http://hogwarts-it.herokuapp.com/api/v1/house/#{@house}?") do |f|
-      f.params["api_key"] = ENV['HOGWARTS_API_KEY']
-      f.adapter Faraday.default_adapter
-    end
+  def get_json
+    response = conn.get
+    data = JSON.parse(response.body, symbolize_names: true)[:data]
   end
 
+  def conn
+    @_conn = service.conn
+  end
+
+  def service
+    @_service = HogwartsService.new(@house)
+  end
 
 end
