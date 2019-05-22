@@ -4,7 +4,7 @@ class SearchController < ApplicationController
     # binding.pry
     # "house"=>"Slytherin"
     render locals: {
-      facade: SearchFacade(params[:house])
+      facade: HouseSearchFacade.new(params[:house])
     }
   end
 
