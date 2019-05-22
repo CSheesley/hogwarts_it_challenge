@@ -7,6 +7,9 @@ class HouseSearchFacade
 
   def students
     students = house_data[:students]
+    students.map do |student_data|
+      Student.new(student_data)
+    end
   end
 
   private

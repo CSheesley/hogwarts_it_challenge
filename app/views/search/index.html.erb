@@ -1,11 +1,11 @@
 <h1><%= facade.students.count %> Students</h1>
 
 
-<ul class=".students">
+<ul class="students">
   <% facade.students.each do |student| %>
-  <li class=".student">
-    <p><%= student.name %></p>
-    <p><%= student.id %></p>
+  <li class="student">
+    <p class="name"><%= student.name %></p>
+    <p class="id"><%= student.id %></p>
   </li>
   <% end %>
 </ul>
